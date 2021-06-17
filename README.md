@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Referências para problemas encontrados
+- https://www.angularjswiki.com/angular/how-to-use-angular-pipes-in-components-and-services/
+- https://stackoverflow.com/questions/50513486/angular-how-to-get-the-current-locale-at-runtime-when-using-aot/50514403
+- https://stackoverflow.com/questions/60481414/invalidpipeargument-missing-locale-data-for-the-locale-pt-br-for-pipe

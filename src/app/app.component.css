@@ -1,0 +1,51 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+input {
+  text-align: right;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+mat-expansion-panel.mat-expansion-panel, mat-expansion-panel-header.mat-expansion-panel-header {
+  background-color: lavender !important;
+}
+
+.table-content {
+  margin: 0 1rem;
+}
+
+.table {
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+}
+
+td {
+  text-align: left;
+}
+
+tr > th {
+  color: #080808;
+  font-size: 0.75rem;;
+}
+
+tr:nth-child(odd) {
+  background: #3f51b5a6;
+}
+
+tr:nth-child(odd) > td {
+  color: #fefefe;
+}
+
+.obs {
+  margin-top: 1rem;
+}
