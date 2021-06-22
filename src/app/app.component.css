@@ -1,3 +1,8 @@
+.param {
+  width: 300px;
+  margin: 0 auto;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -30,12 +35,14 @@ th {
 }
 
 td {
-  text-align: left;
+  text-align: right;
+  font-size: 12px;
 }
 
 tr > th {
   color: #080808;
   font-size: 0.75rem;;
+  text-align: right;
 }
 
 tr:nth-child(odd) {
@@ -48,4 +55,16 @@ tr:nth-child(odd) > td {
 
 .obs {
   margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .table-content {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  td {
+    font-size: 14px;
+  }
 }

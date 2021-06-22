@@ -5,7 +5,8 @@ import { MatTable } from '@angular/material/table';
 
 export interface PmRow {
   qtd: number;
-  total: number;
+  amount: string;
+  qtdTotal: number;
   newpm: string;
   vlTotal: string;
 }
@@ -23,7 +24,13 @@ export class AppComponent {
 
   calculado: PmRow[] = [];
 
-  displayedColumns: string[] = ['qtd', 'total', 'newpm', 'vlTotal'];
+  displayedColumns: string[] = [
+    'qtd',
+    'amount',
+    'qtdTotal',
+    'vlTotal',
+    'newpm',
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,14 +49,17 @@ export class AppComponent {
   calcularPM() {
     const values = this.myForm.getRawValue();
     this.calculado = [];
-    for (let i = 0; i <= values.iterations; i+=values.iteration) {
+    const maxIteration = values.iterations * values.iteration;
+    for (let i = 0; i <= maxIteration; i+=values.iteration) {
       const aux = ( ( ( values.price * i ) + ( values.currentQty * values.currentAveragePrice) ) / ( i + values.currentQty ) );
       const npm = this.currencyPipe.transform(aux, 'BRL');
+      const amount = this.currencyPipe.transform(values.price * i, 'BRL');
       const qtdTotal = i + values.currentQty;
       const vlTotal = this.currencyPipe.transform(aux * qtdTotal, 'BRL');
       let nl: PmRow = { 
         qtd: i, 
-        total: qtdTotal,
+        qtdTotal,
+        amount,
         newpm: npm,
         vlTotal }
       this.calculado.push(nl)
