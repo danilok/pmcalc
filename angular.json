@@ -111,9 +111,21 @@
               "devServerTarget": "pmcalc:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "pmcalc"
+  "defaultProject": "pmcalc",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
