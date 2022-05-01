@@ -11,9 +11,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -30,7 +32,9 @@ registerLocaleData(localePt);
     MatFormFieldModule,
     MatButtonModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule,
+    NgApexchartsModule,
   ],
   providers: [
     CurrencyPipe,
