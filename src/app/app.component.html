@@ -33,39 +33,77 @@
     <button [disabled]="myForm.invalid" mat-raised-button color="primary" type="submit">Calcular</button>
   </form>
 </div>
-<div class="table-content">
-  <table mat-table [dataSource]="calculado" class="mat-elevation-z8 table">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <ng-container matColumnDef="qtd">
-      <th mat-header-cell *matHeaderCellDef>Qtd</th>
-      <td mat-cell *matCellDef="let element">{{element.qtd}}</td>
-    </ng-container>
+<mat-tab-group mat-stretch-tabs dynamicHeight
+  (selectedTabChange)="myTabSelectedTabChange($event)"
+>
+  <mat-tab label="Tabela">
+    <div class="table-content tab-content">
+      <table mat-table [dataSource]="calculado" class="mat-elevation-z8 table">
     
-    <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef>Montante*</th>
-      <td mat-cell *matCellDef="let element">{{element.amount}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="qtdTotal">
-      <th mat-header-cell *matHeaderCellDef>Qtd Tot.</th>
-      <td mat-cell *matCellDef="let element">{{element.qtdTotal}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="vlTotal">
-      <th mat-header-cell *matHeaderCellDef>Vlr.Tot.*</th>
-      <td mat-cell *matCellDef="let element">{{element.vlTotal}}</td>
-    </ng-container>
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <ng-container matColumnDef="qtd">
+          <th mat-header-cell *matHeaderCellDef>Qtd</th>
+          <td mat-cell *matCellDef="let element">{{element.qtd}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Montante*</th>
+          <td mat-cell *matCellDef="let element">{{element.amount}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="qtdTotal">
+          <th mat-header-cell *matHeaderCellDef>Qtd Tot.</th>
+          <td mat-cell *matCellDef="let element">{{element.qtdTotal}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="vlTotal">
+          <th mat-header-cell *matHeaderCellDef>Vlr.Tot.*</th>
+          <td mat-cell *matCellDef="let element">{{element.vlTotal}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="newpm">
+          <th mat-header-cell *matHeaderCellDef>PM*</th>
+          <td mat-cell *matCellDef="let element">{{element.newpm}}</td>
+        </ng-container>
     
-    <ng-container matColumnDef="newpm">
-      <th mat-header-cell *matHeaderCellDef>PM*</th>
-      <td mat-cell *matCellDef="let element">{{element.newpm}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <p class="obs"><strong>(*) Montante, valor total e preço médio não inclui o valor de taxas, ou seja, é um valor aproximado.</strong></p>
-</div>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <p class="obs"><strong>(*) Montante, valor total e preço médio não inclui o valor de taxas, ou seja, é um valor aproximado.</strong></p>
+    </div>
+  </mat-tab>
+  <mat-tab label="Gráficos">
+    <div class="mat-elevation-z4 tab-content">
+      <div style="text-align:center" *ngIf="calculado.length > 0 && selectedTab === 1">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [dataLabels]="chartOptions.dataLabels"
+          [yaxis]="chartOptions.yaxis"
+          [labels]="chartOptions.labels"
+          [legend]="chartOptions.legend"
+          [title]="chartOptions.title"
+          [subtitle]="chartOptions.subtitle"
+        ></apx-chart>
+      </div>
+      
+      <div id="chart" *ngIf="calculado.length > 0">
+        <apx-chart
+          [series]="chartOptionsBar.series"
+          [chart]="chartOptionsBar.chart"
+          [dataLabels]="chartOptionsBar.dataLabels"
+          [plotOptions]="chartOptionsBar.plotOptions"
+          [xaxis]="chartOptionsBar.xaxis"
+          [stroke]="chartOptionsBar.stroke"
+          [title]="chartOptionsBar.title"
+          [subtitle]="chartOptionsBar.subtitle"
+        ></apx-chart>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
